@@ -1,0 +1,12 @@
+---
+# The name of the bucket to download file from
+ivynet_client_bucket: "ivynet-share"
+
+# Where to save the file
+ivynet_client_install_path: "/tmp/ivynet"
+
+# The user authrized to download the file
+ivynet_client_email: ""
+
+# Name of the file
+ivynet_client_file: "ivynet"

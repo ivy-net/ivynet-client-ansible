@@ -1,0 +1,24 @@
+---
+- name: Get OAuth token
+  ansible.builtin.shell: |
+    gcloud auth print-access-token
+  register: oauth_token
+  delegate_to: localhost
+  changed_when: false
+
+- name: Download file using OAuth token
+  ansible.builtin.uri:
+    url: "https://storage.googleapis.com/storage/v1/b/{{ ivynet_client_bucket }}/o/{{ ivynet_client_file | urlencode }}?alt=media"
+    dest: "{{ ivynet_client_install_path }}/{{ ivynet_client_file }}"
+    method: GET
+    headers:
+      Authorization: "Bearer {{ oauth_token.stdout }}"
+    mode: '0644'
+    creates: "{{ ivynet_client_install_path }}/{{ ivynet_client_file }}"
+  register: download_result
+
+- name: Verify download
+  ansible.builtin.stat:
+    path: "{{ ivynet_client_install_path }}/{{ ivynet_client_file }}"
+  register: file_stat
+  failed_when: not file_stat.stat.exists

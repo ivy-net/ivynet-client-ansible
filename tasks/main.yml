@@ -1,0 +1,34 @@
+---
+- name: Prepare directories
+  ansible.builtin.file:
+    path: "{{ ivynet_client_install_path }}/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop:
+    - ''
+    - bin
+    - resources
+  tags:
+    - ivynet_client
+    - general
+
+- name: Download third party tools (docker, gcloud)
+  ansible.builtin.import_tasks:
+    file: third_party.yml
+
+- name: Download ivynet-cli
+  ansible.builtin.import_tasks:
+    file: download.yml
+
+- name: Add ivynet bin dir to system-wide $PATH.
+  ansible.builtin.copy:
+    dest: /etc/profile.d/ivy-path.sh
+    content: "PATH=$PATH:{{ ivynet_client_install_path }}/bin"
+    owner: root
+    group: root
+    mode: "0644"
+  tags:
+    - ivynet_client
+    - ivynet
