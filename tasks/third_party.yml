@@ -12,22 +12,6 @@
     enabled: true
   tags:
     - ivynet_client
-    - general
-    - docker
-
-- name: Add GCloud Repository
-  ansible.builtin.deb822_repository:
-    name: google
-    types: [deb]
-    uris: "https://packages.cloud.google.com/apt"
-    signed_by: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
-    suites: [cloud-sdk]
-    components: [main]
-    state: present
-    enabled: true
-  tags:
-    - ivynet_client
-    - general
     - docker
 
 - name: Install packages (for docker and google)
@@ -40,16 +24,7 @@
     - containerd.io
     - docker-buildx-plugin
     - docker-compose-plugin
-    - google-cloud-cli
-    - python3-pip
   tags:
     - ivynet_client
-    - general
     - docker
     - download
-
-- name: Ensure google-auth is installed
-  ansible.builtin.pip:  # noqa: package-latest
-    name: google-auth
-    state: present
-    break_system_packages: true

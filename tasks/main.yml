@@ -12,15 +12,24 @@
     - resources
   tags:
     - ivynet_client
-    - general
 
 - name: Download third party tools (docker, gcloud)
   ansible.builtin.import_tasks:
     file: third_party.yml
 
 - name: Download ivynet-cli
-  ansible.builtin.import_tasks:
-    file: download.yml
+  ansible.builtin.get_url:
+# yamllint disable-line rule:line-length
+    url: "{{ ivynet_client_bucket }}/{{ ivynet_client_file }}-{{ ivynet_client_version }}"
+# yamllint disable-line rule:line-length
+    checksum: "sha256:{{ ivynet_client_bucket}}/{{ ivynet_client_file }}-{{ ivynet_client_version }}.sha256"
+    dest: "{{ ivynet_client_install_path }}/bin/{{ ivynet_client_file }}"
+    owner: root
+    group: root
+    mode: "0755"
+  tags:
+    - ivynet_client
+    - download
 
 - name: Add ivynet bin dir to system-wide $PATH.
   ansible.builtin.copy:
@@ -31,4 +40,3 @@
     mode: "0644"
   tags:
     - ivynet_client
-    - ivynet
