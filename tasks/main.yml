@@ -19,9 +19,9 @@
 
 - name: Download ivynet-cli
   ansible.builtin.get_url:
-# yamllint disable-line rule:line-length
+    # yamllint disable-line rule:line-length
     url: "{{ ivynet_client_bucket }}/{{ ivynet_client_file }}-{{ ivynet_client_version }}"
-# yamllint disable-line rule:line-length
+    # yamllint disable-line rule:line-length
     checksum: "sha256:{{ ivynet_client_bucket}}/{{ ivynet_client_file }}-{{ ivynet_client_version }}.sha256"
     dest: "{{ ivynet_client_install_path }}/bin/{{ ivynet_client_file }}"
     owner: root
