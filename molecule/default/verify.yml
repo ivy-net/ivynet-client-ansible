@@ -2,7 +2,7 @@
 - name: Verify
   hosts: all
   vars:
-    ivynet_client_path: /tmp/ivynet/bin/ivynet
+    ivynet_client_path: /opt/ivynet/bin/ivynet
   tasks:
     - name: Get file stats
       ansible.builtin.stat:
