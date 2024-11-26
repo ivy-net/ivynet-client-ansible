@@ -1,5 +1,9 @@
-The role requires a valid glcoud access-token.
-You can get it with:
-```
-gcloud auth login
-```
+# Ivynet Client installation
+
+The role installs ivynet client binary in an Ubuntu OS.
+Additinally it install Docker CE.
+
+
+## Testing
+
+Simple molecule check that the binaries are installed.
