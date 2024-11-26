@@ -9,6 +9,10 @@ lint: |
 platforms:
   - name: ubuntu24.04
     image: ubuntu:noble
+  - name: ubuntu22.04
+    image: ubuntu:jammy
+  - name: debian12
+    image: debian:bookworm
 provisioner:
   name: ansible
   playbooks:
