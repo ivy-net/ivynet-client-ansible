@@ -3,7 +3,7 @@
 ivynet_client_bucket: "https://storage.googleapis.com/ivynet-share"
 
 # Where to save the file
-ivynet_client_install_path: "/tmp/ivynet"
+ivynet_client_install_path: "/opt/ivynet"
 
 # Version of the file
 ivynet_client_version: "0.3.0"
