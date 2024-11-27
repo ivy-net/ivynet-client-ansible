@@ -1,0 +1,19 @@
+# Ivynet Client installation
+
+The role installs ivynet client binary in an Ubuntu OS.
+Additinally it install Docker CE.
+
+## Supported system
+
+The role can be used with:
+- Ubuntu LTS (22.04, 22.04)
+- Debian (12)
+
+### Other
+
+Ivynet client should work with any Linux distribution (which has with libssl3 and libcrypto libraries).
+The role works only with deb package, because of docker installation from the apt repository.
+
+## Testing
+
+Simple molecule check that the binaries are installed.

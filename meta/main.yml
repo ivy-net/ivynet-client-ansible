@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: ivynet_client
+  namespace: ivynet
+  author: Wawrzek Niewodniczański
+  description: Install IvyNet Client (and Docker CE)
+  company: "IvyNet"
+  license: Apache-2.0
+  min_ansible_version: "2.17"
+  platforms:
+    - name: Debian
+      versions:
+        - bookworm
+    - name: Ubuntu
+      versions:
+        - noble
+        - jammy
+  galaxy_tags:
+    - blockchain
+    - ethereum
+    - web3
+    - monitoring
+    - observability
+
+dependencies: []
