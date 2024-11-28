@@ -5,15 +5,20 @@ Additinally it install Docker CE.
 
 ## Supported system
 
-The role can be used with:
-- Ubuntu LTS (22.04, 22.04)
-- Debian (12)
-
-### Other
-
 Ivynet client should work with any Linux distribution (which has with libssl3 and libcrypto libraries).
-The role works only with deb package, because of docker installation from the apt repository.
+
+The role has a set of simple molecule test confirming that it works with conteporary:
+- Debian (12),
+- Ubuntu (22.04, 24.04),
+- RedHat dervivatives (Rocky Linux 9),
+- Fedora (40).
+
 
 ## Testing
 
 Simple molecule check that the binaries are installed.
+
+# Known issue
+
+- Fedora 41 causes an issue for Ansible dnf module (https://github.com/ansible/ansible/issues/84206).
+That causes the role to fail on docker package installation.
