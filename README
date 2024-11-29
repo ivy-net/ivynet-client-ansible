@@ -18,6 +18,8 @@ The role has a set of simple molecule test confirming that it works with contepo
 
 Simple molecule check that the binaries are installed.
 
+Each relase should trigger bump of the version in the defaults list and in the molecule verify.yml file.
+
 # Known issue
 
 - Fedora 41 causes an issue for Ansible dnf module (https://github.com/ansible/ansible/issues/84206).

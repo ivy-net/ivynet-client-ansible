@@ -3,6 +3,7 @@
   hosts: all
   vars:
     ivynet_client_path: /opt/ivynet/bin/ivynet
+    ivynet_client_version: 0.3.0
   tasks:
     - name: Get file stats
       ansible.builtin.stat:
@@ -12,9 +13,21 @@
     - name: Show
       ansible.builtin.debug:
         msg: "{{ ivynet_bin }}"
-    - name: Assert the file is download
+    - name: Assert that the file is downloaded
       ansible.builtin.assert:
         that:
           - ivynet_bin.stat.isreg is defined
           - ivynet_bin.stat.isreg == True
           - ivynet_bin.stat.size > 2**20
+    - name: Confirm right version
+      ansible.builtin.shell: |
+        set -o pipefail &&
+        {{ ivynet_client_path }} -V |
+        grep -q {{ ivynet_client_version }}
+      register:
+        ivynet_version_check
+      changed_when: ivynet_version_check.rc != 0
+    - name: Assert that the right version was found
+      ansible.builtin.assert:
+        that:
+          - ivynet_version_check.rc == 0
