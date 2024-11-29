@@ -13,7 +13,7 @@
   tags:
     - ivynet_client
 
-- name: Download third party tools (docker, gcloud)
+- name: Download third party tools (docker)
   ansible.builtin.import_tasks:
     file: third_party.yml
 

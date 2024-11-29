@@ -1,19 +1,29 @@
 # Ivynet Client installation
 
 The role installs ivynet client binary in an Ubuntu OS.
-Additinally it install Docker CE.
+Additionally it install Docker CE.
 
-## Supported system
+## Supported systems
 
-The role can be used with:
-- Ubuntu LTS (22.04, 22.04)
-- Debian (12)
+Ivynet client should work with any Linux distribution which has the libssl3 and libcrypto libraries.
 
-### Other
+The role has a set of simple molecule tests confirming that it works with contemporary distributions:
+- Debian (12),
+- Ubuntu (22.04, 24.04),
+- RedHat derivatives (Rocky Linux 9),
+- Fedora (40).
 
-Ivynet client should work with any Linux distribution (which has with libssl3 and libcrypto libraries).
-The role works only with deb package, because of docker installation from the apt repository.
 
 ## Testing
 
-Simple molecule check that the binaries are installed.
+Molecule checks that:
+- the binary file is installed
+- the client starts and returns a sensible version string when called with the '-V' option
+
+
+# Known issue
+
+- Molecule does not work with Apple Silicon (at least MacOS on it)
+
+- Fedora 41 causes an issue for Ansible dnf module (https://github.com/ansible/ansible/issues/84206).
+That causes the role to fail on docker package installation.

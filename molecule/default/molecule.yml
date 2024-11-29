@@ -13,6 +13,10 @@ platforms:
     image: ubuntu:jammy
   - name: debian12
     image: debian:bookworm
+  - name: rocky9
+    image: rockylinux:9
+  - name: fedora
+    image: fedora:40
 provisioner:
   name: ansible
   playbooks:
@@ -22,5 +26,6 @@ provisioner:
       fact_caching: jsonfile
       fact_caching_connection: /tmp/ansible_fact_cache
       fact_caching_timeout: 86400
+      remote_tmp: /tmp
 verifier:
   name: ansible
