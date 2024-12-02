@@ -3,6 +3,19 @@
 The role installs ivynet client binary file in Linux and ensure it's in global PATH.
 Additionally, Ansible installs Docker CE (first adding matching package repository).
 
+# Quick start
+
+* Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible)
+* Prepare an inventory file
+* Prepare playbook e.g.
+```
+---
+name: Install IvyNet client
+  hosts: all
+  roles:
+  - ivynet-client-ansible
+```
+
 ## Supported systems
 
 Ivynet client should work with any Linux distribution which has the libssl3 and libcrypto libraries.
