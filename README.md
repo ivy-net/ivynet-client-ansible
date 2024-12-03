@@ -12,6 +12,9 @@ Additionally, Ansible installs Docker CE (first adding matching package reposito
 ---
 name: Install IvyNet client
   hosts: all
+  become: true
+  vars:
+    ivynet_client_version: 0.3.2
   roles:
   - ivynet-client-ansible
 ```
