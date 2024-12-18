@@ -1,9 +1,9 @@
 # Ivynet Client installation
 
-The role installs ivynet client binary file in Linux and ensure it's in global PATH.
+The role installs ivynet client binary file in Linux and ensure it's in the global PATH.
 Additionally, Ansible installs Docker CE (first adding matching package repository).
 
-For more information about the Ivynet Client visit [here](https://docs.ivynet.dev/docs/client/clientExplanation).
+For more information about the Ivynet Client visit [here](https://docs.ivynet.dev/).
 
 # Quick start
 
@@ -16,7 +16,7 @@ For more information about the Ivynet Client visit [here](https://docs.ivynet.de
   hosts: all
   become: true
   vars:
-    ivynet_client_version: 0.3.3
+    ivynet_client_version: 0.4.3
   roles:
   - ivynet-client-ansible
 ```
@@ -42,7 +42,7 @@ Molecule checks that:
 
 # Known issue
 
-- Molecule does not work with Apple Silicon (at least MacOS on it)
+- Molecule does not work with Apple Silicon (at least with MacOS on it)
 
-- Fedora 41 causes an issue for Ansible dnf module (https://github.com/ansible/ansible/issues/84206).
+- Fedora 41 is an issue for Ansible dnf module (https://github.com/ansible/ansible/issues/84206).
 That causes the role to fail on docker package installation.
