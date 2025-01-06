@@ -9,17 +9,6 @@ For more information about the Ivynet Client visit [here](https://docs.ivynet.de
 
 * Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible)
 * Prepare an inventory file
-* Prepare the playbook; e.g. the `ivynet_clinet.yml` file with following content:
-```
----
-- name: Install IvyNet client
-  hosts: all
-  become: true
-  vars:
-    ivynet_client_version: 0.4.9
-  roles:
-  - ivynet-client-ansible
-```
 * Prepare the `roles` directory
 ```
 mkdir roles
@@ -30,6 +19,18 @@ cd roles
 git clone https://github.com/ivy-net/ivynet-client-ansible.git
 cd ../
 ```
+* Prepare the playbook; e.g. the `ivynet_clinet.yml` file with following content:
+```
+---
+- name: Install IvyNet client
+  hosts: all
+  become: true
+  vars:
+    ivynet_client_version: 0.4.10
+  roles:
+  - ivynet-client-ansible
+```
+* _Optional: Confirm that the version in the above code snippet is the right one e.g. by looking at [download page](https://storage.googleapis.com/ivynet-share/index.html)_
 * Run Ansible
 ## Supported systems
 
