@@ -16,7 +16,7 @@ For more information about the Ivynet Client visit [here](https://docs.ivynet.de
   hosts: all
   become: true
   vars:
-    ivynet_client_version: 0.4.3
+    ivynet_client_version: 0.4.9
   roles:
   - ivynet-client-ansible
 ```

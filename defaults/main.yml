@@ -6,7 +6,7 @@ ivynet_client_bucket: "https://storage.googleapis.com/ivynet-share"
 ivynet_client_install_path: "/opt/ivynet"
 
 # Version of the file
-ivynet_client_version: "0.4.3"
+ivynet_client_version: "0.4.9"
 
 # Name of the file
 ivynet_client_file: "ivynet"
