@@ -9,7 +9,7 @@ For more information about the Ivynet Client visit [here](https://docs.ivynet.de
 
 * Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible)
 * Prepare an inventory file
-* Prepare playbook e.g.
+* Prepare the playbook; e.g. the `ivynet_clinet.yml` file with following content:
 ```
 ---
 - name: Install IvyNet client
@@ -20,7 +20,17 @@ For more information about the Ivynet Client visit [here](https://docs.ivynet.de
   roles:
   - ivynet-client-ansible
 ```
-
+* Prepare the `roles` directory
+```
+mkdir roles
+```
+* Downlod the role into the directory
+```
+cd roles
+git clone https://github.com/ivy-net/ivynet-client-ansible.git
+cd ../
+```
+* Run Ansible
 ## Supported systems
 
 Ivynet client should work with any Linux distribution which has the libssl3 and libcrypto libraries.
