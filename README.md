@@ -26,7 +26,7 @@ cd ../
   hosts: all
   become: true
   vars:
-    ivynet_client_version: 0.4.18
+    ivynet_client_version: 0.5.1
   roles:
   - ivynet-client-ansible
 ```
