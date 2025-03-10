@@ -2,11 +2,23 @@
 # The name of the bucket to download file from
 ivynet_client_bucket: "https://storage.googleapis.com/ivynet-share"
 
+# Install docker
+ivynet_client_docker: true
+
+# Group for ivynet-client files
+ivynet_client_group: root
+
 # Where to save the file
 ivynet_client_install_path: "/opt/ivynet"
 
-# Version of the file
-ivynet_client_version: "0.5.1"
-
 # Name of the file
 ivynet_client_file: "ivynet"
+
+# Setup systemd
+ivynet_client_systemd: false
+
+# User for ivynet-client files
+ivynet_client_user: root
+
+# Version of the file
+ivynet_client_version: "0.5.1"

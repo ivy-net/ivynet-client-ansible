@@ -1,10 +1,30 @@
 ---
+- name: Agg group ivynet
+  ansible.builtin.group:
+    name: "{{ ivynet_client_group }}"
+  when:
+    - ivynet_client_systemd | bool
+    - ivynet_client_group != 'root'
+
+- name: Add user ivynet
+  ansible.builtin.user:
+    name: "{{ ivynet_client_user }}"
+    comment: Ivynet Client user
+    groups: docker
+    create_home: true
+    shell: /bin/bash
+  when:
+    - ivynet_client_systemd | bool
+    - ivynet_client_user != 'root'
+  tags:
+    - ivynet_client
+
 - name: Prepare directories
   ansible.builtin.file:
     path: "{{ ivynet_client_install_path }}/{{ item }}"
     state: directory
-    owner: root
-    group: root
+    owner: "{{ ivynet_client_user }}"
+    group: "{{ ivynet_client_group }}"
     mode: "0755"
   loop:
     - ''
@@ -16,6 +36,7 @@
 - name: Download third party tools (docker)
   ansible.builtin.import_tasks:
     file: third_party.yml
+  when: ivynet_client_docker | bool
 
 - name: Download ivynet-cli
   ansible.builtin.get_url:
@@ -24,8 +45,8 @@
     # yamllint disable-line rule:line-length
     checksum: "sha256:{{ ivynet_client_bucket }}/{{ ivynet_client_file }}-{{ ivynet_client_version }}.sha256"
     dest: "{{ ivynet_client_install_path }}/bin/{{ ivynet_client_file }}"
-    owner: root
-    group: root
+    owner: "{{ ivynet_client_user }}"
+    group: "{{ ivynet_client_group }}"
     mode: "0755"
   tags:
     - ivynet_client
@@ -40,3 +61,9 @@
     mode: "0644"
   tags:
     - ivynet_client
+    - file
+
+- name: Set systemd
+  ansible.builtin.import_tasks:
+    file: systemd.yml
+  when: ivynet_client_systemd | bool
