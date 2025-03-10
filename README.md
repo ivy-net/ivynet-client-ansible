@@ -53,10 +53,10 @@ Molecule checks that:
 
 # Using SystemD
 
-To configure ivynet to run with systemd a few settings need to be consider.
+To configure ivynet systemd service a few settings in the Ansible role need to be consider.
 The variable `ivynet_client_systemd` has to be set to `true`.
 It is a good idea to run `ivynet` as user dedicated user .e.g. `ivynet`.
-Below example of playbook setting systemd script for ivynet client.
+Below example of a playbook enabling systemd for the ivynet client.
 ```
 ---
 - name: Install IvyNet client with systemD
