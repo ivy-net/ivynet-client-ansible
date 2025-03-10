@@ -28,7 +28,7 @@ cd ../
   vars:
     ivynet_client_version: 0.5.1
   roles:
-  - ivynet-client-ansible
+    - ivynet-client-ansible
 ```
 * _Optional: Confirm that the version in the above code snippet is the right one e.g. by looking at [download page](https://storage.googleapis.com/ivynet-share/index.html)_
 * Run Ansible
@@ -51,9 +51,50 @@ Molecule checks that:
 - the client starts and returns a sensible version string when called with the '-V' option
 
 
+# Using SystemD
+
+To configure ivynet systemd service a few settings in the Ansible role need to be consider.
+The variable `ivynet_client_systemd` has to be set to `true`.
+It is a good idea to run `ivynet` as user dedicated user .e.g. `ivynet`.
+Below example of a playbook enabling systemd for the ivynet client.
+```
+---
+- name: Install IvyNet client with systemD
+  hosts: all
+  become: true
+  vars:
+    ivynet_client_version: 0.5.1
+    ivynet_client_systemd: true
+    ivynet_client_user: ivynet
+    ivynet_client_group: ivynet
+  roles:
+    - ivynet-client-ansible
+
+```
+
+Following the client installation it has to be register with the back-end server.
+Run the following command:
+```
+sudo su ivynet -c "/opt/ivynet/bin/ivynet node-register"
+```
+When asked provide credentials used to login to the ivynet website.
+
+Next, at least one node has to be configured.
+Follow [Quickstart](https://docs.ivynet.dev/docs/client/QuickstartGuide#scan-for-active-nodes-avss) to scan the system for AVS's and configure the client with:
+```
+sudo su ivynet -c "/opt/ivynet/bin/ivynet scan"
+```
+
+Now, restart ivynet systemd service to start exporting telemetry signals:
+```
+sudo systemctl restart ivynet-client
+```
+The client going to fetch data from any known node type.
+It includes any nodes added in the future.
+
+
 # Known issue
 
 - Molecule does not work with Apple Silicon (at least with MacOS on it)
-
-- Fedora 41 is an issue for Ansible dnf module (https://github.com/ansible/ansible/issues/84206).
+- There is an issue with Ansible in Fedora 41 (https://github.com/ansible/ansible/issues/84206).
 That causes the role to fail on docker package installation.

@@ -12,7 +12,7 @@
     enabled: true
   tags:
     - ivynet_client
-    - ivynet_client_docker
+    - docker
 
 - name: Install packages (for docker)
   ansible.builtin.apt:
