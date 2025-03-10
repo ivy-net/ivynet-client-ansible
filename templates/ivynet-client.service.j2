@@ -1,0 +1,14 @@
+[Unit]
+Description=Ivynet Client service
+After=network.target
+
+[Service]
+ExecStart={{ ivynet_client_install_path }}/bin/ivynet monitor
+Type=simple
+User={{ ivynet_client_user }}
+Group={{ ivynet_client_group }}
+Restart=always
+
+[Install]
+WantedBy=default.target
+RequiredBy=network.target
