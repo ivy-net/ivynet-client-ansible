@@ -21,4 +21,4 @@ ivynet_client_systemd: false
 ivynet_client_user: root
 
 # Version of the file
-ivynet_client_version: "0.5.2"
+ivynet_client_version: "0.5.3"

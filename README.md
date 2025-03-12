@@ -26,7 +26,7 @@ cd ../
   hosts: all
   become: true
   vars:
-    ivynet_client_version: 0.5.2
+    ivynet_client_version: 0.5.3
   roles:
     - ivynet-client-ansible
 ```
@@ -63,7 +63,7 @@ Below example of a playbook enabling systemd for the ivynet client.
   hosts: all
   become: true
   vars:
-    ivynet_client_version: 0.5.2
+    ivynet_client_version: 0.5.3
     ivynet_client_systemd: true
     ivynet_client_user: ivynet
     ivynet_client_group: ivynet
