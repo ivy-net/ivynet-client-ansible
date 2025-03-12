@@ -2,3 +2,5 @@
 *.sw?
 .*.un
 .ansible
+
+example
